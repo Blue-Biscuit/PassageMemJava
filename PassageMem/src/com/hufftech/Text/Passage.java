@@ -80,6 +80,15 @@ public class Passage implements Iterable<String> {
         return passage;
     }
 
+    /**
+     * True if the input passage matches the passage.
+     * @param input The input to test.
+     * @return True if they match.
+     */
+    public boolean matches(@NotNull String input) {
+        return passage.equals(input.trim());
+    }
+
     @Override
     public @NotNull Iterator<String> iterator() {
         return Arrays.stream(words).iterator();
@@ -87,10 +96,7 @@ public class Passage implements Iterable<String> {
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof String s) {
-            return full().equals(s.trim());
-        }
-        else if (o instanceof Passage p){
+        if (o instanceof Passage p){
             return p.full().equals(full());
         }
         else {
