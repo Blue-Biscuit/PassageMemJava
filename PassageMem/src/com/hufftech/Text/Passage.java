@@ -86,7 +86,16 @@ public class Passage implements Iterable<String> {
      * @return True if they match.
      */
     public boolean matches(@NotNull String input) {
-        return passage.equals(input.trim());
+        boolean result = passage.equals(input.trim());
+
+        if (result) {
+            successes++;
+        }
+        else {
+            fails++;
+        }
+
+        return result;
     }
 
     @Override
@@ -106,6 +115,8 @@ public class Passage implements Iterable<String> {
 
     private final String[] words;
     private final String passage;
+    private int fails = 0;
+    private int successes = 0;
 
     /**
      * True if the index is in range of this passage.
