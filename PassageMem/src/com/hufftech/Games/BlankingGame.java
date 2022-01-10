@@ -65,6 +65,21 @@ public class BlankingGame {
         }
     }
 
+    /**
+     * Gets the word, or a blank of the same size, at the index.
+     * @param index The index to get at.
+     * @return The word or the blank.
+     * @exception WordOutOfBoundsException If the index is out of bounds for this passage.
+     */
+    public String wordAt(int index) throws WordOutOfBoundsException {
+        String word = passage.wordAt(index);
+        if (blanked[index]) {
+            word = new String(new char[word.length()]).replace('\0', '_'); // Thanks, stackoverflow!
+        }
+
+        return word;
+    }
+
     private final Passage passage;
     private final boolean[] blanked;
 
