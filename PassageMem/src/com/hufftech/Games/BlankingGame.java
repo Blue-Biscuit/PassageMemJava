@@ -32,6 +32,15 @@ public class BlankingGame {
         }
     }
 
+    public boolean wordIsBlanked(int index) throws WordOutOfBoundsException {
+        if (inRange(index)) {
+            return blanked[index];
+        }
+        else {
+            throw new WordOutOfBoundsException(index, passage.numWords());
+        }
+    }
+
     private final Passage passage;
     private final boolean[] blanked;
 
