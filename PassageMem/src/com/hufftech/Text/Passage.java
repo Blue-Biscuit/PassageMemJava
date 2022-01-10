@@ -85,6 +85,19 @@ public class Passage implements Iterable<String> {
         return Arrays.stream(words).iterator();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof String s) {
+            return full().equals(s.trim());
+        }
+        else if (o instanceof Passage p){
+            return p.full().equals(full());
+        }
+        else {
+            return false;
+        }
+    }
+
     private final String[] words;
     private final String passage;
 
