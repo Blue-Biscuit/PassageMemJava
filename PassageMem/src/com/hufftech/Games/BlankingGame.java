@@ -32,6 +32,12 @@ public class BlankingGame {
         }
     }
 
+    /**
+     * Checks if the given word index is blanked.
+     * @param index The index of the word to check.
+     * @return True if this word has been blanked.
+     * @throws WordOutOfBoundsException The word index given is out of bounds of the passage.
+     */
     public boolean wordIsBlanked(int index) throws WordOutOfBoundsException {
         if (inRange(index)) {
             return blanked[index];
