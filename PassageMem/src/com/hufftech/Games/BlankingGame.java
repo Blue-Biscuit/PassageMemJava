@@ -4,6 +4,8 @@ import com.hufftech.Text.Passage;
 import com.hufftech.Text.WordOutOfBoundsException;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Random;
+
 /**
  * A memorization game in which words in the passage are blanked from view as the user
  * re-types the full passage.
@@ -30,6 +32,22 @@ public class BlankingGame {
         else {
             throw new WordOutOfBoundsException(index, passage.numWords());
         }
+    }
+
+    /**
+     * Blanks a random word in the passage, based upon the input random number generator.
+     * @param r The random number generator.
+     */
+    public void blankRandomWord(@NotNull Random r) {
+        int index = r.nextInt(passage.numWords());
+        blankWord(index);
+    }
+
+    /**
+     * Blanks a random word in the passage, based upon the time of the method call.
+     */
+    public void blankRandomWord() {
+        blankRandomWord(new Random());
     }
 
     /**
