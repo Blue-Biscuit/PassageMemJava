@@ -80,6 +80,15 @@ public class BlankingGame {
         return word;
     }
 
+    /**
+     * True if the input equals the full passage.
+     * @param input The input string.
+     * @return True if the input matches the passage.
+     */
+    public boolean matches(@NotNull String input) {
+        return passage.matches(input);
+    }
+
     private final Passage passage;
     private final boolean[] blanked;
 
