@@ -5,6 +5,7 @@ import com.hufftech.Text.WordOutOfBoundsException;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * A memorization game in which words in the passage are blanked from view as the user
@@ -39,7 +40,10 @@ public class BlankingGame {
      * @param r The random number generator.
      */
     public void blankRandomWord(@NotNull Random r) {
-        int index = r.nextInt(passage.numWords());
+        int index;
+        do {
+            index = r.nextInt(passage.numWords());
+        } while (wordIsBlanked(index) && !allIsBlanked());
         blankWord(index);
     }
 
@@ -63,6 +67,20 @@ public class BlankingGame {
         else {
             throw new WordOutOfBoundsException(index, passage.numWords());
         }
+    }
+
+    /**
+     * Whether every word in the passage is blanked or not.
+     * @return True if every word in the passage is blanked.
+     */
+    public boolean allIsBlanked() {
+        for (int i = 0; i < passageWords(); i++) {
+            if (!wordIsBlanked(i)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -125,5 +143,19 @@ public class BlankingGame {
      */
     protected boolean inRange(int index) {
         return index >= 0 && index < passage.numWords();
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String input = in.nextLine();
+
+        Passage p = new Passage(input);
+        BlankingGame bg = new BlankingGame(p);
+
+        for (int i = 0; i < p.numWords(); i++) {
+            System.out.println(bg);
+            bg.blankRandomWord();
+        }
+        System.out.println(bg);
     }
 }
