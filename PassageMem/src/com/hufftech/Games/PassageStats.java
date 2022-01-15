@@ -19,6 +19,16 @@ public class PassageStats {
     }
 
     /**
+     * Copy constructor.
+     * @param ps the PassageStats object to copy.
+     */
+    public PassageStats(@NotNull PassageStats ps) {
+        successes = ps.getSuccesses();
+        fails = ps.getFails();
+        passage = ps.getPassage();
+    }
+
+    /**
      * Increments the number of successes.
      */
     public void incSuccesses() {
