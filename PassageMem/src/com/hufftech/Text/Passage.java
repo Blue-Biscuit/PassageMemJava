@@ -80,13 +80,43 @@ public class Passage implements Iterable<String> {
         return passage;
     }
 
+    /**
+     * True if the input passage matches the passage.
+     * @param input The input to test.
+     * @return True if they match.
+     */
+    public boolean matches(@NotNull String input) {
+        boolean result = passage.equals(input.trim());
+
+        if (result) {
+            successes++;
+        }
+        else {
+            fails++;
+        }
+
+        return result;
+    }
+
     @Override
     public @NotNull Iterator<String> iterator() {
         return Arrays.stream(words).iterator();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Passage p){
+            return p.full().equals(full());
+        }
+        else {
+            return false;
+        }
+    }
+
     private final String[] words;
     private final String passage;
+    private int fails = 0;
+    private int successes = 0;
 
     /**
      * True if the index is in range of this passage.
