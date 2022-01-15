@@ -89,6 +89,32 @@ public class BlankingGame {
         return passage.matches(input);
     }
 
+    /**
+     * Gets the number of words in the passage associated with this game.
+     * @return The number of words.
+     */
+    public int passageWords() {
+        return passage.numWords();
+    }
+
+    @Override
+    public String toString() {
+        if (passageWords() > 0) {
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < passageWords() - 1; i++) {
+                sb.append(wordAt(i));
+                sb.append(' ');
+            }
+            sb.append(wordAt(passageWords() - 1));
+
+            return sb.toString();
+        }
+        else {
+            return "";
+        }
+    }
+
     private final Passage passage;
     private final boolean[] blanked;
 
